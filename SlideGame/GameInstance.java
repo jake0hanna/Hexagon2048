@@ -501,7 +501,7 @@ public class GameInstance
 							}
 							else if(isARule(GameRules.EdgeOfBoardWrapAround))
 							{
-								//IDK MAN, HEXES ARENT MEANT TO WRAP
+								//Modulo life
 								
 							}
 							
@@ -588,6 +588,7 @@ public class GameInstance
 		probabilities = new double[TileType.values().length-1];
 
 		//default probabilities :: 2048 default
+		//These should be in their own static variables
 		
 		if(rules.containsAll(RuleSet.ClassicSlideGame.getRules()))
 		{
@@ -598,29 +599,6 @@ public class GameInstance
 			probabilities[3] = 0.05;
 			probabilities[4] = 0.05;
 			probabilities[5] = 0.0;
-
-		}
-		else if(rules.containsAll(RuleSet.Lockout.getRules()))
-		{
-
-			probabilities[0] = 0.7;
-			probabilities[1] = 0.2;
-			probabilities[2] = 0.25;
-			probabilities[3] = 0.25;
-			probabilities[4] = 0.2499;
-			probabilities[5] = 0.0001;
-
-		}
-		else if(rules.containsAll(RuleSet.Speelflake.getRules()))
-		{
-
-			probabilities[0] = 1;
-			probabilities[1] = 0.0;
-			probabilities[2] = 0.0;
-			probabilities[3] = 0.0;
-			probabilities[4] = 0.0;
-			probabilities[5] = 0.0;
-
 
 		}
 		else if(rules.containsAll(RuleSet.TwentyFortyEight.getRules()))
@@ -1026,18 +1004,7 @@ public class GameInstance
 	public boolean isWithinBoard(int q, int r) {
 		if(q >= -boardSize && q <= boardSize && r >= -boardSize && r <= boardSize && -q-r >= -boardSize && -q-r <= boardSize &&
 				(q+r+(-q-r) == 0)
-				/*&&
-				(
-					((q >= 0 && r <= 0) || (r >= 0 && q <= 0))
-				&&
-					(q == 0 && Math.abs(r)+Math.abs(-q-r) <= boardSize)
-					||
-					(r == 0 && Math.abs(q)+Math.abs(-q-r) <= boardSize)
-					||
-					(Math.abs(-q-r) == 0 && Math.abs(q)+Math.abs(r) <= boardSize)
-
-				)*/
-
+				
 				)
 				return true;
 		else return false;

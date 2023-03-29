@@ -1,8 +1,6 @@
 package SlideGame;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
@@ -299,53 +297,3 @@ public class HexagonUI extends JComponent {
     
 }
 
-
-
-/*package SlideGame;
-
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Polygon;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-public class HexagonUI extends javax.swing.JPanel{
-	
-	int renderSize, numPoint = 6;
-	public Image hexagon;
-	public int[] xPoints = {100,50,-50,-100,-50,50,}, yPoints = {0,-87,-87,0,87,87};
-	Polygon p;
-	
-	//100,0 50,-87 -50,-87 -100,-0 -50,87 50,87
-	
-	HexagonUI(double size, TileType t) throws IOException	
-	{
-		
-		p = new Polygon(xPoints, xPoints, numPoint);
-		
-		size = 1;
-		for(int i = 0; i < 6; i++)
-		{
-			
-			p.addPoint(xPoints[i], xPoints[i]);
-			
-		}
-		
-		
-	}
-	
-	   @Override
-	   public void paint(Graphics g) {
-		  
-		   super.paintComponent(g);
-		   g.drawPolygon(p);
-		   
-		   
-       
-	   }
-	
-
-}
-*/

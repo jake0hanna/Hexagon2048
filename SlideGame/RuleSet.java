@@ -12,24 +12,8 @@ public enum RuleSet
                                                  add(GameRules.Obstacles); 
                                                  add(GameRules.SpecialEffects); 
                                                  add(GameRules.ObstaclesWalls);}}, 
-                                                 4),
+                                                 4);
     
-    Lockout (new ArrayList<GameRules>(){{add(GameRules.EdgeOfBoardCombine); 
-                                        add(GameRules.Obstacles); 
-                                        add(GameRules.SpecialEffects);
-                                        add(GameRules.DestructableObstacles);
-                                        add(GameRules.ShuffleObstacles);
-                                        add(GameRules.ProgressiveObstacles);}},
-                                        4),
-    
-    Speelflake (new ArrayList<GameRules>(){{add(GameRules.EdgeOfBoardDelete); 
-                                            add(GameRules.Holes); 
-                                            add(GameRules.ConditionalHoles); 
-                                            add(GameRules.SpecialEffects);
-                                            add(GameRules.ObstaclesWalls);}}, 
-                                            6);
-
-    //HexaGone (new ArrayList<GameRules>(){{add(GameRules.);}});
 
     private int boardSize;
     private ArrayList<GameRules> rules;

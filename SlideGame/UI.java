@@ -3,51 +3,38 @@ package SlideGame;
 import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Dictionary;
-import java.util.Hashtable;
-
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
-import javax.swing.JSlider;
-import javax.swing.text.html.HTMLDocument.HTMLReader.SpecialAction;
 
 public class UI implements ActionListener, MouseListener
 {
 	JFrame coreFrame;
 	Container mainMenuContainer, gameContainer, boardContainer;
 	JButton startButton, quitButton, eastButton, westButton, northwestButton, northeastButton, southwestButton, southeastButton;
-	BufferedImage banner, hexagon;
+	BufferedImage banner;
 	ImageIcon eastArrow, westArrow, northwestArrow, northeastArrow, southwestArrow, southeastArrow;
 	JLabel renderedBanner, renderedHexagon, renderedArrow, boardSizeLabel;
-	JFormattedTextField holesAmount, obstaclesAmount, specialEffectsFrequency;
 	Checkbox obstacles, holes, specialEffects, activateEffectsIfDeleted;
 	ButtonGroup gamemodeButtons;
-	JRadioButton ripoffMode, classicMode, lockoutMode, speelflakeMode;
+	JRadioButton ripoffMode, classicMode;
 	ArrayList<GameRules> rules;
 	Dictionary obstAmounts;
 
-	int boardSize, //includes center so, 1 less than actual board size
-					   //values 2 - 6 only
+	int boardSize, //values 2 - 6 only
 			boardCenterOffset = (-1*boardSize),
 			hexRenderSize = 75, 
 			gamePieceHexSize = hexRenderSize/10 *9,
@@ -75,9 +62,7 @@ public class UI implements ActionListener, MouseListener
 		try 
 		{
 			banner = ImageIO.read(getClass().getResource("/Assets/slidegame.png"));
-			hexagon = ImageIO.read(getClass().getResource("/Assets/hexagonTEST.png"));
 			renderedBanner = new JLabel(new ImageIcon(banner));
-			renderedHexagon = new JLabel(new ImageIcon(hexagon));
 
 			eastArrow = new ImageIcon("Assets/arrowRIGHT.jpg");
 			westArrow = new ImageIcon("Assets/arrowLEFT.jpg");
@@ -453,51 +438,6 @@ public class UI implements ActionListener, MouseListener
 		return isValid((int)qrs.getX(),(int) qrs.getY());
 	}
 
-
-	/*public void testCase(int caseno)
-	{
-
-		switch(caseno)
-		{
-		case 1:
-			//send start
-			
-			//test case
-			ArrayList<Pair> p = new ArrayList<Pair>();
-			p.add(new Pair(new Tile(EffectType.Bomb), new ThreePointCoordinate(0,-4,4)));
-			p.add(new Pair(new Tile(TileType.BasicObstacle), new ThreePointCoordinate(1,-4,3)));
-			p.add(new Pair(new Tile(TileType.PointTile), new ThreePointCoordinate(2,-4,2)));
-			p.add(new Pair(new Tile(2), new ThreePointCoordinate(3,-4,1)));
-			p.add(new Pair(new Tile(EffectType.Bomb), new ThreePointCoordinate(0,0,0)));			
-			
-			p.add(new Pair(new Tile(4), new ThreePointCoordinate(1,0,-1)));
-			p.add(new Pair(new Tile(8), new ThreePointCoordinate(2,0,-2)));
-			p.add(new Pair(new Tile(16), new ThreePointCoordinate(3,0,-3)));
-			p.add(new Pair(new Tile(32), new ThreePointCoordinate(4,0,-4)));
-
-			p.add(new Pair(new Tile(64), new ThreePointCoordinate(0,4,-4)));
-			p.add(new Pair(new Tile(128), new ThreePointCoordinate(1,3,-4)));
-			p.add(new Pair(new Tile(256), new ThreePointCoordinate(2,2,-4)));
-			p.add(new Pair(new Tile(512), new ThreePointCoordinate(3,1,-4)));
-
-			p.add(new Pair(new Tile(1024), new ThreePointCoordinate(0,6,-4)));
-			p.add(new Pair(new Tile(2048), new ThreePointCoordinate(1,5,-4)));
-			p.add(new Pair(new Tile(4096), new ThreePointCoordinate(2,4,-4)));
-			p.add(new Pair(new Tile(8192), new ThreePointCoordinate(3,3,-4)));
-			p.add(new Pair(new Tile(16384), new ThreePointCoordinate(4,2,-4)));
-			p.add(new Pair(new Tile(32768), new ThreePointCoordinate(5,1,-4)));
-			paintBoard(p);
-
-			break;
-
-
-		}
-
-
-	}
-*/
-
-
 	public void updateRules()
 	{
 
@@ -506,20 +446,13 @@ public class UI implements ActionListener, MouseListener
 			case "Slide Game":
 				this.boardSize = RuleSet.ClassicSlideGame.getBoardSize();
 				this.setRules(RuleSet.ClassicSlideGame.getRules());
-				
 				break;
-			case "Lockout":
-				this.boardSize = RuleSet.Lockout.getBoardSize();
-				this.setRules(RuleSet.Lockout.getRules());
-				break;
+
 			case "Classic":
 				this.boardSize = RuleSet.TwentyFortyEight.getBoardSize();
 				this.setRules(RuleSet.TwentyFortyEight.getRules());
 				break;
-			case "Speelflake":
-				this.boardSize = RuleSet.Speelflake.getBoardSize();
-				this.setRules(RuleSet.Speelflake.getRules());
-				break;
+
 
 		}
 
@@ -717,21 +650,6 @@ public class UI implements ActionListener, MouseListener
 
 
 
-
-	public BufferedImage getHexagon() {
-		return hexagon;
-	}
-
-
-
-
-	public void setHexagon(BufferedImage hexagon) {
-		this.hexagon = hexagon;
-	}
-
-
-
-
 	public ImageIcon getEastArrow() {
 		return eastArrow;
 	}
@@ -868,53 +786,6 @@ public class UI implements ActionListener, MouseListener
 	public void setBoardSizeLabel(JLabel boardSizeLabel) {
 		this.boardSizeLabel = boardSizeLabel;
 	}
-
-
-
-
-
-
-
-
-	public JFormattedTextField getHolesAmount() {
-		return holesAmount;
-	}
-
-
-
-
-	public void setHolesAmount(JFormattedTextField holesAmount) {
-		this.holesAmount = holesAmount;
-	}
-
-
-
-
-	public JFormattedTextField getObstaclesAmount() {
-		return obstaclesAmount;
-	}
-
-
-
-
-	public void setObstaclesAmount(JFormattedTextField obstaclesAmount) {
-		this.obstaclesAmount = obstaclesAmount;
-	}
-
-
-
-
-	public JFormattedTextField getSpecialEffectsFrequency() {
-		return specialEffectsFrequency;
-	}
-
-
-
-
-	public void setSpecialEffectsFrequency(JFormattedTextField specialEffectsFrequency) {
-		this.specialEffectsFrequency = specialEffectsFrequency;
-	}
-
 
 
 
