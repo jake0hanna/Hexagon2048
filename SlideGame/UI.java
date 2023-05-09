@@ -197,6 +197,7 @@ public class UI implements ActionListener, MouseListener
 
 		quitButton = new JButton("X");
 		quitButton.setBounds(10, 10, screenSize/20, screenSize/20);
+		quitButton.addActionListener(this);
 		
 
 		gameContainer.add(quitButton);
@@ -383,6 +384,10 @@ public class UI implements ActionListener, MouseListener
 			coreFrame.repaint();
 			
 		}
+		if(e.getSource() == quitButton)
+		{
+			System.exit(0);
+		}
 		
 	}
 
@@ -418,8 +423,8 @@ public class UI implements ActionListener, MouseListener
 		
 	}
 
-	public void setMouseListener(MouseListener listener) {
-		coreFrame.addMouseListener(listener);
+	public void setMouseListener(MouseListener controller) {
+		coreFrame.addMouseListener(controller);
 	}	
 
 	public boolean isValid(int q, int r)

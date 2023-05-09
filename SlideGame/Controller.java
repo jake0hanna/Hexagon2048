@@ -22,7 +22,6 @@ public class Controller implements ActionListener
 	{
 		
 		gui = new UI();
-		gui.setMouseListener(this);
 		gui.startButton.addActionListener(this);
 		gui.eastButton.addActionListener(this);
 		gui.westButton.addActionListener(this);
